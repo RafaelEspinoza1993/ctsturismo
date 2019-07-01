@@ -3,7 +3,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import ChallengeOne from '@/js/components/ChallengeOne';
 import ChallengeTwo from '@/js/components/ChallengeTwo';
-
+import ChallengeThree from '@/js/components/ChallengeThree';
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -18,6 +18,16 @@ const router = new VueRouter({
             path:'/ChallengeTwo',
             name: 'ChallengeTwo',
             component:ChallengeTwo
+        },
+        {
+            path: '/ChallengeThree',
+            name: 'ChallengeThree',
+            component:ChallengeThree
+        },
+        {
+            path: '/ChallengeFour',
+            name: 'ChallengeFour',
+            component: ChallengeFour
         }
     ]
 });

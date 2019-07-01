@@ -1,8 +1,8 @@
 //Imports
 import './bootstrap';
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import Vue from 'vue';
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
 
 //Routes information
 import Routes from '@/js/routes.js';

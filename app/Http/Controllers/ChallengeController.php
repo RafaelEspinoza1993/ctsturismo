@@ -10,24 +10,64 @@ class ChallengeController extends Controller
     {
        return view('app');
     }
-    public function ChallengeOne(Request $request){
-        
-        $modelyear  = $request->input('modelyear');
-        $make       = $request->input('make');
-        $model      = $request->input('model');
+    public function ChallengeOne($modelyear, $make, $model, Request $request){
+        $withRating= $request->get("withRating");
         $result = new \stdClass();
-
-        $data = requisito_1($modelyear, $make, $model);
-
         
-        $result->Count = $data->Count;
-        for ($i = 0; $i < $data->Count; $i++) {
-            $total[$i] = [
-                'Description' => $data->Results[$i]->VehicleDescription,
-                'VehicleId' => $data->Results[$i]->VehicleId
-            ];
+        $data = GetVehiculo($modelyear, $make, $model);
+
+        if ( $data->Count > 0) {
+            if ($withRating) {
+                $result->Count = $data->Count;
+                for ($i = 0; $i < $data->Count; $i++) {
+                    $Rating = GetRating($data->Results[$i]->VehicleId);
+                    
+                    $total[$i] = [
+                        'CrashRating'   => $Rating->Results[0]->OverallRating,
+                        'Description'   => $data->Results[$i]->VehicleDescription,
+                        'VehicleId'     => $data->Results[$i]->VehicleId
+                    ];
+                }
+                $result->Results = $total;
+            }else{
+                $result->Count = $data->Count;
+                for ($i = 0; $i < $data->Count; $i++) {
+                    $total[$i] = [
+                        'Description' => $data->Results[$i]->VehicleDescription,
+                        'VehicleId' => $data->Results[$i]->VehicleId
+                    ];
+                }
+                $result->Results = $total;
+            }
+        }else{
+            $result->Count = 0;
+            $result->Results = [];
         }
-        $result->Results = $total;
+       
+        return response()->json($result);
+    }
+    public function ChallengeTwo(Request $request)
+    {
+        $result = new \stdClass();
+        $modelyear= $request->get('modelYear');
+        $make= $request->get('manufacturer');
+        $model= $request->get('model');
+        $data = GetVehiculo($modelyear, $make, $model);
+
+        if ($data->Count > 0) {
+            $result->Count = $data->Count;
+            for ($i = 0; $i < $data->Count; $i++) {
+                $total[$i] = [
+                    'Description' => $data->Results[$i]->VehicleDescription,
+                    'VehicleId' => $data->Results[$i]->VehicleId
+                ];
+            }
+            $result->Results = $total;
+        } else {
+            $result->Count = 0;
+            $result->Results = [];
+        }
+
         return response()->json($result);
     }
 }

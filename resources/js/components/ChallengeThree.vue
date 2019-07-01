@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h3>Requerimiento 1</h3>
+        <h3>Requerimiento 3</h3>
             <div class="form-group">
                 <label for="modelyear">Model Year</label>
                 <input type="number" class="form-control" id="modelyear" placeholder="Model Year" v-model="modelyear">
@@ -42,8 +42,7 @@ export default {
                 me.success = false;
 
             } else {
-                
-                 let url = '/vehicles/' + me.modelyear + '/' + me.make + '/' + me.model; //Ruta que hemos creado para que nos devuelva todas las tareas
+                let url = '/vehicles/' + me.modelyear + '/' + me.make + '/' + me.model + '?withRating=true'; //Ruta que hemos creado para que nos devuelva todas las tareas
                 window.axios.get(url).then(function (response) {
                     //creamos un array y guardamos el contenido que nos devuelve el response
                     me.arrayTasks = response.data;

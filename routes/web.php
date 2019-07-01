@@ -1,16 +1,12 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Support\Facades\Route;
 
-Route::get('/{any}', 'ChallengeController@index')->where('any', '.*');
+Route::get( '/', 'ChallengeController@index')->where('any', '.*');
+Route::get( '/ChallengeTwo', 'ChallengeController@index')->where('any', '.*');
+Route::get( '/ChallengeThree', 'ChallengeController@index')->where('any', '.*');
 
-Route::get( '/vehicles/{MODELYEAR}/{MANUFACTURER}/{MODEL}', 'ChallengeController@ChallengeOne');
+
+Route::get( '/vehicles/{modelyear}/{make}/{model}', 'ChallengeController@ChallengeOne');
+Route::post('/vehicles', 'ChallengeController@ChallengeTwo');
+Route::get('/vehicles/{modelyear}/{make}/{model}?withRating=true', 'ChallengeController@ChallengeThree');
