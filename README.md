@@ -6,6 +6,7 @@ Modulo De pruebas
     2-Abrir consola en la carpeta donde tiene los archivos descomprimido del zip
     3-composer update
     4-npm install
-    5-npm run dev
-    6-php artisan serve --port=8080
+    5-npm install --save-dev vue-axios vue-router vue-loader vue-template-compiler
+    6-npm run dev
+    7-php artisan serve --port=8080
     
