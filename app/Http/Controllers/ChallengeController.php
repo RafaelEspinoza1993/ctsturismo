@@ -13,12 +13,11 @@ class ChallengeController extends Controller
     public function ChallengeOne($modelyear, $make, $model, Request $request){
         $withRating= $request->get("withRating");
         $result = new \stdClass();
-        
         $data = GetVehiculo($modelyear, $make, $model);
 
         if ( $data->Count > 0) {
-            if ($withRating) {
-                $result->Count = $data->Count;
+            $result->Count = $data->Count;
+            if ($withRating == "true") {
                 for ($i = 0; $i < $data->Count; $i++) {
                     $Rating = GetRating($data->Results[$i]->VehicleId);
                     
@@ -28,17 +27,16 @@ class ChallengeController extends Controller
                         'VehicleId'     => $data->Results[$i]->VehicleId
                     ];
                 }
-                $result->Results = $total;
             }else{
-                $result->Count = $data->Count;
                 for ($i = 0; $i < $data->Count; $i++) {
                     $total[$i] = [
                         'Description' => $data->Results[$i]->VehicleDescription,
                         'VehicleId' => $data->Results[$i]->VehicleId
                     ];
                 }
-                $result->Results = $total;
+                
             }
+            $result->Results = $total;
         }else{
             $result->Count = 0;
             $result->Results = [];

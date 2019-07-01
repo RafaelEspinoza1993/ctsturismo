@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import ChallengeOne from '@/js/components/ChallengeOne';
 import ChallengeTwo from '@/js/components/ChallengeTwo';
 import ChallengeThree from '@/js/components/ChallengeThree';
+import ChallengeFour from '@/js/components/ChallengeFour';
 
 Vue.use(VueRouter);
 const router = new VueRouter({
