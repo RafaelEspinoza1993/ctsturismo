@@ -8,5 +8,8 @@ Modulo De pruebas
     4-npm install
     5-npm install --save-dev vue-axios vue-router vue-loader vue-template-compiler
     6-npm run dev
+    7-editar .env.example a .env
+    8-php artisan key:generate
+    9-php artisan config:cache
     7-php artisan serve --port=8080
     
